@@ -1,0 +1,11 @@
+.caldera-form input,
+.caldera-form select,
+.caldera-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.caldera-form label {
+    font-weight: bold;
+}
