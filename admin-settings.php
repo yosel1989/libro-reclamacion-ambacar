@@ -286,7 +286,7 @@ function generar_pdf_reclamo_completo($datos) {
                 <td colspan="4" rowspan="3" class="firma">FIRMA DEL PROVEEDOR</td>
             </tr>
             <tr>
-                <td colspan="8" rowspan="2"></td>
+                <td colspan="8" rowspan="2"></td>     
             </tr>
         </table>
         <table>
