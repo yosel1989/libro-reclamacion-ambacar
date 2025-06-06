@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Caldera Form
+ * Plugin Name: Libro Reclamaciones Form
  * Description: Libro de Reclamaciones con pasos y envío por correo.
  * Version: 1.0
- * Author: Tu Nombre
+ * Author: Yosel Edwin Aguirre Balbin - +51952387795 - yosel1989@gmail.com - Soluciones TI
  */
 
 if (!defined('ABSPATH')) exit;
@@ -14,7 +14,7 @@ define('CALDERA_FORM_OPTION_EMAILS', 'caldera_form_emails'); // ✅ Definimos la
 // Activación: crea la tabla
 register_activation_hook(__FILE__, function () {
     global $wpdb;
-    $table = $wpdb->prefix . 'caldera_form';
+    $table = $wpdb->prefix . 'ambacar_libro_reclamaciones';
     $charset = $wpdb->get_charset_collate();
 
     $sql = "CREATE TABLE IF NOT EXISTS $table (
@@ -48,6 +48,7 @@ register_activation_hook(__FILE__, function () {
 // Incluir archivos
 include_once CALDERA_FORM_PATH . 'form-handler.php';
 include_once CALDERA_FORM_PATH . 'admin-settings.php';
+include_once CALDERA_FORM_PATH . 'class-caldera-form-table.php';
 
 // Shortcode para insertar formulario
 add_shortcode('caldera_form', function () {
@@ -57,10 +58,15 @@ add_shortcode('caldera_form', function () {
 });
 
 // Cargar JS y CSS
-add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('caldera-form-style', plugins_url('assets/style.css', __FILE__));
-    wp_enqueue_script('caldera-form-js', plugins_url('assets/script.js', __FILE__), ['jquery'], null, true);
-    wp_localize_script('caldera-form-js', 'caldera_form_ajax', [
-        'ajax_url' => admin_url('admin-ajax.php')
-    ]);
-});
+
+    add_action('wp_enqueue_scripts', function () {
+		$version = time();
+       wp_enqueue_style('caldera-form-style', plugins_url('assets/style.css', __FILE__), [], $version);
+		wp_enqueue_script('caldera-form-js', plugins_url('assets/script.js', __FILE__), ['jquery'],  $version, true);
+		wp_localize_script('caldera-form-js', 'caldera_form_ajax', [
+			'ajax_url' => admin_url('admin-ajax.php')
+		]);
+    });
+
+
+
